@@ -22,11 +22,23 @@ const CodeText = () => {
   
   }`)
 
-  const [output] = React.useState('Output:\n')
+  const [output, setOutput] = React.useState('Output:\n')
 
   async function handleButtonPress() {
-    const response = await fetch('http://localhost:5000/run', { method: 'GET', body: codeText })
-    console.log(response)
+
+    const url = 'http://366ba31b363a.ngrok.io/compile'
+
+    const response = await fetch(url, { 
+      method: 'POST',
+      body: JSON.stringify(codeText),
+      headers: { 'content-type':  'application/json'}
+    })
+    const output = JSON.parse(await response.text())
+    let res: string = ""
+    for (let i = 0; i < output.length; i++) {
+      res += output[i] + '\n'
+    }
+    setOutput(res)
   }
 
   return (
