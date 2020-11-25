@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView, TextInput, View, Button } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, TextInput, View, Button, Image } from 'react-native';
 
 export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={ styles.heading }>Compilords!</Text>
+      <Image style={{ height: 80, width: 80 }} source={require('./assets/whale-lang-logo.png')} />
+      <Text style={ styles.heading }>Whale Lang</Text>
       <CodeText />
       <StatusBar style="inverted" />
     </SafeAreaView>
@@ -16,17 +17,22 @@ export default function App() {
 
 const CodeText = () => {
   const [codeText, onChangeCodeText] = React.useState(`
-  Program program;
+  program programa;
+  let int x;
 
   main () {
-  
+    for (x = 0 to 10) {
+      write(x);
+    }
   }`)
 
   const [output, setOutput] = React.useState('Output:\n')
 
   async function handleButtonPress() {
 
-    const url = 'http://366ba31b363a.ngrok.io/compile'
+    setOutput('')
+
+    const url = 'http://7de941f7e5c2.ngrok.io/compile'
 
     const response = await fetch(url, { 
       method: 'POST',
@@ -83,6 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#111',
     alignItems: 'center',
     justifyContent: 'center',
+    height: '100%',
   },
   inputStyle: {
     color: 'white',
@@ -96,7 +103,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     color: 'white',
     width: '85%',
-    height: '30%',
+    height: '25%',
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 5,
