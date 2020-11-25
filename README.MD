@@ -1,1 +1,1 @@
-# Compilords Front End
+# Whale Lang Front End
