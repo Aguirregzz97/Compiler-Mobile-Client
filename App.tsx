@@ -32,7 +32,7 @@ const CodeText = () => {
 
     setOutput('')
 
-    const url = 'http://7de941f7e5c2.ngrok.io/compile'
+    const url = 'http://25e36221b7ad.ngrok.io/compile'
 
     const response = await fetch(url, { 
       method: 'POST',
